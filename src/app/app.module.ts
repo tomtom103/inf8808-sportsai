@@ -6,9 +6,11 @@ import { AppComponent } from '@app/pages/app/app.component';
 import { ScatterComponent } from './components/scatter/scatter.component';
 import { AppMaterialModule } from './modules/material.module';
 import { HomePageComponent } from './pages/home/home.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, ScatterComponent],
+    declarations: [AppComponent, HomePageComponent, ScatterComponent, BarChartComponent, PieChartComponent],
     imports: [AppMaterialModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],

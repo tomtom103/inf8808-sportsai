@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
-    selector: 'app-scatter',
-    templateUrl: './scatter.component.html',
-    styleUrls: ['./scatter.component.scss'],
+    selector: 'app-bar-chart',
+    templateUrl: './bar-chart.component.html',
+    styleUrls: ['./bar-chart.component.scss'],
 })
-export class ScatterComponent implements OnInit {
+export class BarChartComponent implements OnInit {
     private data = [
         { framework: 'Vue', stars: 166443, released: 2014 },
         { framework: 'React', stars: 150793, released: 2013 },
@@ -22,12 +21,12 @@ export class ScatterComponent implements OnInit {
 
     ngOnInit(): void {
         this.createSvg();
-        this.drawPlot();
+        d3.csv('assets/frameworks.csv').then((data) => this.drawBars(data));
     }
 
     private createSvg(): void {
         this.svg = d3
-            .select('figure#scatter')
+            .select('figure#bar')
             .append('svg')
             .attr('width', this.width + this.margin * 2)
             .attr('height', this.height + this.margin * 2)
@@ -35,37 +34,39 @@ export class ScatterComponent implements OnInit {
             .attr('transform', 'translate(' + this.margin + ',' + this.margin + ')');
     }
 
-    private drawPlot(): void {
-        // Add X axis
-        const x = d3.scaleLinear().domain([2009, 2017]).range([0, this.width]);
+    private drawBars(data: any[]): void {
+        // Create the X-axis band scale
+        const x = d3
+            .scaleBand()
+            .range([0, this.width])
+            .domain(data.map((d) => d.framework))
+            .padding(0.2);
+
+        // Draw the X-axis on the DOM
         this.svg
             .append('g')
             .attr('transform', 'translate(0,' + this.height + ')')
-            .call(d3.axisBottom(x).tickFormat(d3.format('d')));
+            .call(d3.axisBottom(x))
+            .selectAll('text')
+            .attr('transform', 'translate(-10,0)rotate(-45)')
+            .style('text-anchor', 'end');
 
-        // Add Y axis
+        // Create the Y-axis band scale
         const y = d3.scaleLinear().domain([0, 200000]).range([this.height, 0]);
+
+        // Draw the Y-axis on the DOM
         this.svg.append('g').call(d3.axisLeft(y));
 
-        // Add dots
-        const dots = this.svg.append('g');
-        dots.selectAll('dot')
-            .data(this.data)
+        // Create and fill the bars
+        this.svg
+            .selectAll('bars')
+            .data(data)
             .enter()
-            .append('circle')
-            .attr('cx', (d) => x(d.released))
-            .attr('cy', (d) => y(d.stars))
-            .attr('r', 7)
-            .style('opacity', 0.5)
-            .style('fill', '#69b3a2');
-
-        // Add labels
-        dots.selectAll('text')
-            .data(this.data)
-            .enter()
-            .append('text')
-            .text((d) => d.framework)
-            .attr('x', (d) => x(d.released))
-            .attr('y', (d) => y(d.stars));
+            .append('rect')
+            .attr('x', (d) => x(d.framework))
+            .attr('y', (d) => y(d.stars))
+            .attr('width', x.bandwidth())
+            .attr('height', (d) => this.height - y(d.stars))
+            .attr('fill', '#d04a35');
     }
 }
