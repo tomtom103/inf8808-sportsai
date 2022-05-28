@@ -1,15 +1,15 @@
 {
-    "name": "sportsai",
+    "name": "inf8808-sportsai",
     "version": "0.0.0",
     "scripts": {
         "start": "ng serve --open",
-        "build": "ng build --prod --base-href \"https://tomtom103.github.io/inf8808-sportsai\"",
+        "build": "ng build --prod --base-href \"https://tomtom103.github.io/inf8808-sportsai/\"",
         "watch": "ng build --watch --configuration development",
         "format": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --write \"src/**/*\"",
         "test": "ng test",
         "lint": "ng lint --format stylish",
         "lint:fix": "npm run lint -- --fix",
-        "deploy": "angular-cli-ghpages --dir=dist/sportsai"
+        "deploy": "angular-cli-ghpages --dir=dist/inf8808-sportsai"
     },
     "private": true,
     "dependencies": {
@@ -29,7 +29,7 @@
         "zone.js": "~0.11.4"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~13.0.1",
+        "@angular-devkit/build-angular": "^13.3.7",
         "@angular-eslint/builder": "13.2.1",
         "@angular-eslint/eslint-plugin": "13.2.1",
         "@angular-eslint/eslint-plugin-template": "13.2.1",
