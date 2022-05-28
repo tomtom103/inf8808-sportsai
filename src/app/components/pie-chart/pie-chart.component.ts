@@ -56,7 +56,7 @@ export class PieChartComponent implements OnInit {
             .enter()
             .append('path')
             .attr('d', d3.arc().innerRadius(0).outerRadius(this.radius))
-            .attr('fill', (d, i: number) => this.colors(i))
+            .attr('fill', (_d: any, i: number) => this.colors(i))
             .attr('stroke', '#121926')
             .style('stroke-width', '1px');
 

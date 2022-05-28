@@ -7,13 +7,6 @@ import * as d3 from 'd3';
     styleUrls: ['./bar-chart.component.scss'],
 })
 export class BarChartComponent implements OnInit {
-    private data = [
-        { framework: 'Vue', stars: 166443, released: 2014 },
-        { framework: 'React', stars: 150793, released: 2013 },
-        { framework: 'Angular', stars: 62342, released: 2016 },
-        { framework: 'Backbone', stars: 27647, released: 2010 },
-        { framework: 'Ember', stars: 21471, released: 2011 },
-    ];
     private svg!: any;
     private margin: number = 50;
     private width: number = 750 - this.margin * 2;
@@ -21,6 +14,7 @@ export class BarChartComponent implements OnInit {
 
     ngOnInit(): void {
         this.createSvg();
+        // Loading the data from CSV
         d3.csv('assets/frameworks.csv').then((data) => this.drawBars(data));
     }
 
@@ -63,10 +57,10 @@ export class BarChartComponent implements OnInit {
             .data(data)
             .enter()
             .append('rect')
-            .attr('x', (d) => x(d.framework))
-            .attr('y', (d) => y(d.stars))
+            .attr('x', (d: any) => x(d.framework))
+            .attr('y', (d: any) => y(d.stars))
             .attr('width', x.bandwidth())
-            .attr('height', (d) => this.height - y(d.stars))
+            .attr('height', (d: any) => this.height - y(d.stars))
             .attr('fill', '#d04a35');
     }
 }
