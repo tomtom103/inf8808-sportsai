@@ -1,0 +1,32 @@
+Player,Nation,Pos,Age,90s,SCA,SCA90,PassLive,PassDead,Drib,Sh,Fld,Def,GCA,GCA90,PassLive,PassDead,Drib,Sh,Fld,Def,Matches
+Thibaut Courtois\1840e36d,be BEL,GK,29,53.0,3,0.06,3,0,0,0,0,0,1,0.02,1,0,0,0,0,0,Matches
+Éder Militão\2784f898,br BRA,DF,23,49.9,35,0.77,26,1,0,3,3,2,5,0.11,2,0,0,1,1,1,Matches
+Vinicius Júnior\7111d552,br BRA,FW,21,47.3,224,5.19,161,1,30,7,22,3,37,0.86,26,0,6,0,4,1,Matches
+David Alaba\05439de2,at AUT,DF,29,45.2,55,1.34,44,3,1,4,0,3,8,0.20,7,0,0,1,0,0,Matches
+Casemiro\4d224fe8,br BRA,MF,29,43.5,83,2.15,72,0,1,1,5,4,14,0.36,10,0,0,1,2,1,Matches
+Karim Benzema\70d74ece,fr FRA,FW,33,43.4,169,4.12,139,0,19,7,3,1,26,0.63,20,0,4,1,1,0,Matches
+Luka Modrić\6025fab1,hr CRO,MF,35,38.0,99,2.87,82,10,3,3,0,1,16,0.46,13,1,0,2,0,0,Matches
+Toni Kroos\6ce1f46f,de GER,MF,31,37.6,113,3.39,76,32,2,0,1,2,5,0.15,4,1,0,0,0,0,Matches
+Federico Valverde\0959c2a2,uy URU,MF,23,31.8,80,2.73,65,2,5,4,1,3,7,0.24,6,0,0,1,0,0,Matches
+Ferland Mendy\3cefcaef,fr FRA,DF,26,31.2,62,2.15,57,2,2,0,1,0,6,0.21,5,0,0,0,1,0,Matches
+Dani Carvajal\4958bfb2,es ESP,DF,29,28.8,59,2.12,55,1,1,0,0,2,7,0.25,6,0,1,0,0,0,Matches
+Nacho\2946f9a1,es ESP,DF,31,28.3,24,1.01,23,0,0,1,0,0,2,0.08,2,0,0,0,0,0,Matches
+Lucas Vázquez\fd51b456,es ESP,DF,30,27.9,71,2.92,58,5,4,1,3,0,3,0.12,3,0,0,0,0,0,Matches
+Rodrygo\8f5e92a6,br BRA,FW,20,26.1,86,3.81,56,6,10,5,8,1,14,0.62,11,0,1,1,1,0,Matches
+Marco Asensio\45af8a54,es ESP,FWMF,25,23.8,70,3.25,44,11,3,9,2,1,9,0.42,4,0,1,3,0,1,Matches
+Eduardo Camavinga\7b9c2d84,fr FRA,MF,18,18.6,39,2.28,34,0,1,0,2,2,7,0.41,7,0,0,0,0,0,Matches
+Eden Hazard\a39bb753,be BEL,FWMF,30,10.1,52,5.84,41,0,4,1,6,0,1,0.11,1,0,0,0,0,0,Matches
+Marcelo\603116a7,br BRA,DF,33,8.2,17,2.46,16,0,0,0,0,1,3,0.43,3,0,0,0,0,0,Matches
+Luka Jović\4d8cd038,rs SRB,FW,23,6.2,18,3.35,13,1,2,2,0,0,3,0.56,3,0,0,0,0,0,Matches
+Mariano\5c4dc0ff,do DOM,FW,27,4.5,10,2.54,7,0,2,0,0,1,2,0.51,1,0,0,0,0,1,Matches
+Andriy Lunin\3061e1ec,ua UKR,GK,22,4.3,0,0.00,0,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches
+Jesús Vallejo\c2111b45,es ESP,DF,24,3.9,1,0.26,1,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches
+Isco\a0b4bb3e,es ESP,MFFW,29,3.9,19,5.15,15,1,0,1,2,0,2,0.54,2,0,0,0,0,0,Matches
+Dani Ceballos\c0617e2b,es ESP,MF,24,3.9,14,3.97,12,0,0,2,0,0,2,0.57,1,0,0,1,0,0,Matches
+Miguel Gutiérrez\7e98cff1,es ESP,DF,20,3.6,6,1.66,6,0,0,0,0,0,2,0.55,2,0,0,0,0,0,Matches
+Gareth Bale\a58bb1e1,wls WAL,FW,32,3.2,1,0.31,1,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches
+Blanco\506daeac,es ESP,MF,21,0.4,1,2.37,1,0,0,0,0,0,1,2.37,1,0,0,0,0,0,Matches
+Peter González\1ccd3dae,do DOM,MFDF,19,0.3,5,16.67,3,0,1,0,1,0,0,0.00,0,0,0,0,0,0,Matches
+Mario Gila\9c435456,es ESP,DF,20,0.3,0,0.00,0,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches
+Sergio Santos\cf59e05f,es ESP,DF,20,0.1,2,16.36,2,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches
+Latasa\2bea832e,es ESP,FW,20,0.1,0,0.00,0,0,0,0,0,0,0,0.00,0,0,0,0,0,0,Matches

@@ -1,0 +1,58 @@
+Date,Time,Comp,Round,Day,Venue,Result,GF,GA,Opponent,CrdY,CrdR,2CrdY,Fls,Fld,Off,Crs,Int,TklW,PKwon,PKcon,OG,Recov,Won,Lost,Won%,Match Report
+2021-08-14,22:00 (16:00),La Liga,Matchweek 1,Sat,Away,W,4,1,Alavés,1,0,0,15,10,1,16,13,7,1,0,0,43,15,3,83.3,Match Report
+2021-08-22,22:00 (16:00),La Liga,Matchweek 2,Sun,Away,D,3,3,Levante,3,1,0,18,6,0,9,14,14,0,0,0,48,4,9,30.8,Match Report
+2021-08-28,22:00 (16:00),La Liga,Matchweek 3,Sat,Away,W,1,0,Betis,5,0,0,20,20,0,10,14,19,0,0,0,85,16,11,59.3,Match Report
+2021-09-12,21:00 (15:00),La Liga,Matchweek 4,Sun,Home,W,5,2,Celta Vigo,3,0,0,17,8,0,8,15,12,0,1,0,69,9,3,75.0,Match Report
+2021-09-15,21:00 (15:00),Champions Lg,Group stage,Wed,Away,W,1,0,it Inter,1,0,0,10,10,4,17,14,9,0,0,0,65,9,4,69.2,Match Report
+2021-09-19,21:00 (15:00),La Liga,Matchweek 5,Sun,Away,W,2,1,Valencia,1,0,0,14,16,0,19,12,12,0,0,0,70,10,8,55.6,Match Report
+2021-09-22,22:00 (16:00),La Liga,Matchweek 6,Wed,Home,W,6,1,Mallorca,1,0,0,12,19,0,5,15,9,0,0,0,52,2,15,11.8,Match Report
+2021-09-25,21:00 (15:00),La Liga,Matchweek 7,Sat,Home,D,0,0,Villarreal,2,0,0,13,12,3,9,11,12,0,0,0,43,8,8,50.0,Match Report
+2021-09-28,21:00 (15:00),Champions Lg,Group stage,Tue,Home,L,1,2,md Sheriff Tiraspol,4,0,0,14,7,2,4,19,12,0,1,0,56,8,11,42.1,Match Report
+2021-10-03,16:15 (10:15),La Liga,Matchweek 8,Sun,Away,L,1,2,Espanyol,2,0,0,12,12,1,8,6,8,0,0,0,55,11,16,40.7,Match Report
+2021-10-19,22:00 (15:00),Champions Lg,Group stage,Tue,Away,W,5,0,ua Shakhtar,1,0,0,9,3,2,5,13,13,0,0,1,65,6,5,54.5,Match Report
+2021-10-24,16:15 (10:15),La Liga,Matchweek 10,Sun,Away,W,2,1,Barcelona,1,0,0,17,15,2,18,17,9,0,0,0,62,7,8,46.7,Match Report
+2021-10-27,21:30 (15:30),La Liga,Matchweek 11,Wed,Home,D,0,0,Osasuna,1,0,0,10,13,0,8,15,7,0,0,0,52,15,15,50.0,Match Report
+2021-10-30,14:00 (08:00),La Liga,Matchweek 12,Sat,Away,W,2,1,Elche,2,1,1,11,13,1,15,13,8,0,0,0,64,5,8,38.5,Match Report
+2021-11-03,18:45 (13:45),Champions Lg,Group stage,Wed,Home,W,2,1,ua Shakhtar,1,0,0,16,11,1,3,16,7,0,0,0,69,4,6,40.0,Match Report
+2021-11-06,21:00 (16:00),La Liga,Matchweek 13,Sat,Home,W,2,1,Rayo Vallecano,2,0,0,17,9,0,16,20,9,0,0,0,41,9,7,56.3,Match Report
+2021-11-21,16:15 (10:15),La Liga,Matchweek 14,Sun,Away,W,4,1,Granada,1,1,0,12,11,2,11,13,13,0,0,0,57,10,15,40.0,Match Report
+2021-11-24,22:00 (15:00),Champions Lg,Group stage,Wed,Away,W,3,0,md Sheriff Tiraspol,1,0,0,12,11,2,13,16,7,0,0,0,67,10,14,41.7,Match Report
+2021-11-28,21:00 (15:00),La Liga,Matchweek 15,Sun,Home,W,2,1,Sevilla,3,0,0,10,12,1,15,13,8,0,0,0,54,14,10,58.3,Match Report
+2021-12-01,21:00 (15:00),La Liga,Matchweek 9,Wed,Home,W,1,0,Athletic Club,3,0,0,15,10,0,17,13,11,0,0,0,86,14,7,66.7,Match Report
+2021-12-04,21:00 (15:00),La Liga,Matchweek 16,Sat,Away,W,2,0,Real Sociedad,2,0,0,13,7,1,15,7,11,0,0,0,79,13,9,59.1,Match Report
+2021-12-07,21:00 (15:00),Champions Lg,Group stage,Tue,Home,W,2,0,it Inter,2,1,0,11,5,0,16,15,11,0,0,0,57,4,11,26.7,Match Report
+2021-12-12,21:00 (15:00),La Liga,Matchweek 17,Sun,Home,W,2,0,Atlético Madrid,3,0,0,15,19,1,11,15,15,0,0,0,66,4,16,20.0,Match Report
+2021-12-19,21:00 (15:00),La Liga,Matchweek 18,Sun,Home,D,0,0,Cádiz,1,0,0,12,9,1,8,21,17,0,0,0,68,7,26,21.2,Match Report
+2021-12-22,21:30 (15:30),La Liga,Matchweek 21,Wed,Away,W,2,1,Athletic Club,2,0,0,19,10,2,15,20,6,0,0,0,52,6,11,35.3,Match Report
+2022-01-02,14:00 (08:00),La Liga,Matchweek 19,Sun,Away,L,0,1,Getafe,3,0,0,26,9,0,7,24,12,0,0,0,58,13,27,32.5,Match Report
+2022-01-05,21:30 (15:30),Copa del Rey,Round of 32,Wed,Away,W,3,1,Alcoyano,3,0,0,17,9,0,25,9,4,,,1,,,,,Match Report
+2022-01-08,21:00 (15:00),La Liga,Matchweek 20,Sat,Home,W,4,1,Valencia,3,0,0,28,15,0,12,10,10,1,1,0,62,5,10,33.3,Match Report
+2022-01-12,22:00 (14:00),Supercopa de España,Semi-finals,Wed,Away,W,3,2,Barcelona,2,0,0,18,11,2,26,15,12,,,0,,,,,Match Report
+2022-01-16,21:30 (13:30),Supercopa de España,Final,Sun,Away,W,2,0,Athletic Club,2,0,0,10,6,0,23,9,9,,,0,,,,,Match Report
+2022-01-20,19:00 (13:00),Copa del Rey,Round of 16,Thu,Away,W,2,1,Elche,2,1,1,21,14,1,20,17,9,,,0,,,,,Match Report
+2022-01-23,16:15 (10:15),La Liga,Matchweek 22,Sun,Home,D,2,2,Elche,1,0,0,15,10,0,4,15,10,0,2,0,67,6,17,26.1,Match Report
+2022-02-03,21:30 (15:30),Copa del Rey,Quarter-finals,Thu,Away,L,0,1,Athletic Club,3,0,0,12,7,2,27,7,12,,,0,,,,,Match Report
+2022-02-06,21:00 (15:00),La Liga,Matchweek 23,Sun,Home,W,1,0,Granada,1,0,0,16,11,1,4,22,10,0,0,0,56,18,8,69.2,Match Report
+2022-02-12,16:15 (10:15),La Liga,Matchweek 24,Sat,Away,D,0,0,Villarreal,2,0,0,12,10,3,13,16,9,0,0,0,72,4,6,40.0,Match Report
+2022-02-15,21:00 (15:00),Champions Lg,Round of 16,Tue,Away,L,0,1,fr Paris S-G,4,0,0,16,15,1,8,13,8,1,0,0,82,3,3,50.0,Match Report
+2022-02-19,21:00 (15:00),La Liga,Matchweek 25,Sat,Home,W,3,0,Alavés,1,0,0,15,6,1,11,17,8,0,1,0,61,17,12,58.6,Match Report
+2022-02-26,18:30 (12:30),La Liga,Matchweek 26,Sat,Away,W,1,0,Rayo Vallecano,5,0,0,22,6,0,18,21,11,0,0,0,79,14,13,51.9,Match Report
+2022-03-05,21:00 (15:00),La Liga,Matchweek 27,Sat,Home,W,4,1,Real Sociedad,2,0,0,15,15,0,2,17,11,1,1,0,52,10,15,40.0,Match Report
+2022-03-09,21:00 (15:00),Champions Lg,Round of 16,Wed,Home,W,3,1,fr Paris S-G,4,0,0,12,18,2,3,7,14,0,0,0,56,3,4,42.9,Match Report
+2022-03-14,21:00 (16:00),La Liga,Matchweek 28,Mon,Away,W,3,0,Mallorca,3,0,0,14,15,0,16,17,13,0,1,0,65,16,15,51.6,Match Report
+2022-03-20,21:00 (16:00),La Liga,Matchweek 29,Sun,Home,L,0,4,Barcelona,4,0,0,16,14,0,4,8,15,0,0,0,74,12,8,60.0,Match Report
+2022-04-02,18:30 (12:30),La Liga,Matchweek 30,Sat,Away,W,2,1,Celta Vigo,3,0,0,20,13,1,19,10,13,0,3,0,66,9,16,36.0,Match Report
+2022-04-06,20:00 (15:00),Champions Lg,Quarter-finals,Wed,Away,W,3,1,eng Chelsea,1,0,0,13,6,0,9,11,8,0,0,0,74,12,7,63.2,Match Report
+2022-04-09,21:00 (15:00),La Liga,Matchweek 31,Sat,Home,W,2,0,Getafe,2,0,0,15,13,0,4,16,10,0,0,0,59,19,20,48.7,Match Report
+2022-04-12,21:00 (15:00),Champions Lg,Quarter-finals,Tue,Home,L,2,3,eng Chelsea,4,0,0,22,19,1,12,15,15,0,0,0,112,19,14,57.6,Match Report
+2022-04-17,21:00 (15:00),La Liga,Matchweek 32,Sun,Away,W,3,2,Sevilla,3,0,0,12,7,1,12,24,10,0,0,0,59,7,10,41.2,Match Report
+2022-04-20,21:30 (15:30),La Liga,Matchweek 33,Wed,Away,W,3,1,Osasuna,1,0,0,13,7,1,13,11,10,0,2,0,70,13,9,59.1,Match Report
+2022-04-26,20:00 (15:00),Champions Lg,Semi-finals,Tue,Away,L,3,4,eng Manchester City,1,0,0,11,8,3,10,8,7,0,1,0,80,15,18,45.5,Match Report
+2022-04-30,16:15 (10:15),La Liga,Matchweek 34,Sat,Home,W,4,0,Espanyol,0,0,0,13,12,1,17,11,14,0,0,0,60,3,6,33.3,Match Report
+2022-05-04,21:00 (15:00),Champions Lg,Semi-finals,Wed,Home,W,3,1,eng Manchester City,3,0,0,19,19,3,13,13,20,0,1,0,114,20,15,57.1,Match Report
+2022-05-08,21:00 (15:00),La Liga,Matchweek 35,Sun,Away,L,0,1,Atlético Madrid,2,0,0,17,8,2,13,14,13,1,0,0,73,6,17,26.1,Match Report
+2022-05-12,21:30 (15:30),La Liga,Matchweek 36,Thu,Home,W,6,0,Levante,1,0,0,8,11,2,8,17,18,0,0,0,60,2,11,15.4,Match Report
+2022-05-15,19:30 (13:30),La Liga,Matchweek 37,Sun,Away,D,1,1,Cádiz,6,0,0,19,12,1,24,17,15,1,0,0,83,11,10,52.4,Match Report
+2022-05-20,21:00 (15:00),La Liga,Matchweek 38,Fri,Home,D,0,0,Betis,0,0,0,12,10,0,7,4,10,0,0,0,62,8,9,47.1,Match Report
+2022-05-28,21:30 (15:30),Champions Lg,Final,Sat,Away,W,1,0,eng Liverpool,1,0,0,12,7,1,14,17,10,0,0,0,100,9,16,36.0,Match Report
+,,,,,,9-8-39,119,50,,122,5,2,835,621,57,689,792,616,6,15,2,3381,494,572,46.3,
