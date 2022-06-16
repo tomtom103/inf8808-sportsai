@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-offensive-danger',
-  templateUrl: './offensive-danger.component.html',
-  styleUrls: ['./offensive-danger.component.scss']
+    selector: 'app-offensive-danger',
+    templateUrl: './offensive-danger.component.html',
+    styleUrls: ['./offensive-danger.component.scss'],
 })
-export class OffensiveDangerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class OffensiveDangerComponent {}
