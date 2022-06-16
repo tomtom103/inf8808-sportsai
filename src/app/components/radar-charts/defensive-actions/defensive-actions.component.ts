@@ -13,15 +13,15 @@ export class DefensiveActionsComponent implements OnInit {
 
     private svg: any;
     private radialScale: any;
-    private ticks = d3.range(0, 10, 1);
+    private ticks = d3.range(2, 12, 2);
 
-    private plotSize: number = 600;
+    private plotSize: number = 650;
 
     constructor() {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 2; i++) {
             let point = {};
             //each feature will be a random number from 1-9
-            this.features.forEach((f) => (point[f] = 1 + Math.random() * 8));
+            this.features.forEach((f) => (point[f] = 1 + Math.random() * 9));
             this.data.push(point);
         }
     }
@@ -46,8 +46,6 @@ export class DefensiveActionsComponent implements OnInit {
     private plotGridLines(): void {
         this.radialScale = d3.scaleLinear().domain([0, 10]).range([0, 250]);
 
-        this.svg.selectAll('text').data(this.ticks).join('text').enter();
-
         this.svg
             .selectAll('g.tick-circles')
             .selectAll('circle')
@@ -69,7 +67,7 @@ export class DefensiveActionsComponent implements OnInit {
             .selectAll('g')
             .data(this.features)
             .join('g')
-            .each(function (_d: any, i: number, nodes: any) {
+            .each((_d: any, i: number, nodes: any) => {
                 const g = d3.select(nodes[i]).attr('class', (name: any) => `features-label-${name.toLowerCase().replace(/ /g, '-')}`);
                 let angle = Math.PI / 2 + (2 * Math.PI * i) / featuresLength;
 
@@ -78,8 +76,7 @@ export class DefensiveActionsComponent implements OnInit {
                     .join('text')
                     .attr('x', (_x, idx) => plotSize / 2 + Math.cos(angle) * radialScale(ticks[idx]))
                     .attr('y', (_x, idx) => plotSize / 2 - Math.sin(angle) * radialScale(ticks[idx]))
-                    .text((tick) => tick)
-                    .toString();
+                    .text((tick) => tick.toString());
             });
     }
 
@@ -100,8 +97,8 @@ export class DefensiveActionsComponent implements OnInit {
             .selectAll('text')
             .data(this.features)
             .join('text')
-            .attr('x', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 10.5).x)
-            .attr('y', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 10.5).y)
+            .attr('x', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 12).x)
+            .attr('y', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 12).y)
             .text((d) => d);
     }
 
@@ -110,7 +107,7 @@ export class DefensiveActionsComponent implements OnInit {
             .line<any>()
             .x((d) => d.x)
             .y((d) => d.y);
-        let colors = ['darkorange', 'gray', 'navy']; // TODO: Use scaleOrdinal
+        let colors = ['darkorange', 'navy']; // TODO: Use scaleOrdinal
 
         this.svg
             .selectAll('g.data-points')
@@ -123,7 +120,20 @@ export class DefensiveActionsComponent implements OnInit {
             .attr('stroke', (_d: any, i: number) => colors[i])
             .attr('fill', (_d: any, i: number) => colors[i])
             .attr('stroke-opacity', 1)
-            .attr('opacity', 0.5);
+            .attr('opacity', 0.5)
+            .attr('pointer-events', 'visiblePainted')
+            .on('mouseover', function (_event, d: any) {
+                d3.select('svg')
+                    .selectAll('g.data-points')
+                    .selectAll('path')
+                    .filter(function (_: any, i: number, nodes: any) {
+                        return d3.select(nodes[i]).datum() === d;
+                    })
+                    .attr('opacity', 0.8);
+            })
+            .on('mouseout', () => {
+                this.svg.selectAll('g.data-points').selectAll('path').attr('opacity', 0.5);
+            });
     }
 
     private angleToCoordinate(angle: number, value: number): Coordinate {
