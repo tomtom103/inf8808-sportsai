@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import d3Legend from 'd3-svg-legend';
 import d3Tip from 'd3-tip';
 
 @Component({
@@ -38,12 +39,14 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
     }
 
     private drawPlot(): void {
+        //set up tip
         let tip = d3Tip()
             .attr('class', 'd3-tip')
             .html((d) => {
                 return this.getTipContent(d);
             });
         this.svg.call(tip);
+
         // Add X axis
         const x = d3.scaleLinear().domain([30, 60]).range([0, this.width]);
         this.svg
@@ -54,6 +57,12 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
         // Add Y axis
         const y = d3.scaleLinear().domain([1.5, 2.5]).range([this.height, 0]);
         this.svg.append('g').call(d3.axisLeft(y));
+        console.log(this.data.map((d) => d.player));
+        // Add color scale
+        const color = d3
+            .scaleOrdinal()
+            .domain(this.data.map((d) => d.player))
+            .range(d3.schemeCategory10);
 
         // Add dots
         const dots = this.svg.append('g');
@@ -64,23 +73,26 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
             .attr('cx', (d) => x(d.plusMinus))
             .attr('cy', (d) => y(d.PPM))
             .attr('r', 5)
-            .style('opacity', 0.7)
-            .style('fill', '#69b3a2')
-            .on('mouseover', function (_event, d, i, el) {
-                let e = dots.selectAll('circle').filter(function (_, i, nodes) {
-                    return d3.select(nodes[i]).datum() === d;
-                });
-                tip.show(d, e);
+            .style('opacity', 0.5)
+            .style('fill', (d) => color(d.player))
+            .on('mouseover', function (_event, d) {
+                let e = dots
+                    .selectAll('circle')
+                    .filter(function (_, i, nodes) {
+                        return d3.select(nodes[i]).datum() === d;
+                    })
+                    .style('opacity', 1);
+                tip.show(d, e.node());
+            })
+            .on('mouseout', (_event, d) => {
+                let e = dots
+                    .selectAll('circle')
+                    .filter(function (_, i, nodes) {
+                        return d3.select(nodes[i]).datum() === d;
+                    })
+                    .style('opacity', 0.5);
+                tip.hide(d, e.node());
             });
-
-        // Add labels
-        /*dots.selectAll('text')
-            .data(this.data)
-            .enter()
-            .append('text')
-            .text((d) => d.player)
-            .attr('x', (d) => x(d.plusMinus))
-            .attr('y', (d) => y(d.PPM));*/
 
         this.svg.append('text').text('PPM (point per matches)').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 12);
 
@@ -89,13 +101,17 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
         this.svg.selectAll('.x.axis-text').attr('transform', `translate(${this.width / 2}, ${this.height + 40})`);
 
         this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2 + 65}) rotate(-90)`);
+
+        let legend = d3Legend.legendColor().shape('path', d3.symbol().type(d3.symbolCircle).size(300)()).scale(color);
+
+        this.svg.append('g').attr('class', 'legend').attr('transform', `translate(${this.width}, -20)`).call(legend);
     }
 
     private getTipContent(d): string {
         return `
       <span> onG : <span class="tooltip-value">${d.onG}</span></span>
       <br>
-      <span> onGa : <span class="tooltip-value">${d.onGa}</span></span>
+      <span> onGa : <span class="tooltip-value">${d.onGA}</span></span>
     `;
     }
 }
