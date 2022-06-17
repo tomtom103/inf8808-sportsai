@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Coordinate } from '@app/interfaces/coordinate';
+import { RadarChartService } from '@app/services/radar-chart/radar-chart.service';
 import * as d3 from 'd3';
+
+const DEFENSIVE_FEATURES = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 
 @Component({
     selector: 'app-defensive-actions',
@@ -8,20 +10,16 @@ import * as d3 from 'd3';
     styleUrls: ['./defensive-actions.component.scss'],
 })
 export class DefensiveActionsComponent implements OnInit {
-    private features: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
     private data: any[] = [];
 
     private svg: any;
-    private radialScale: any;
-    private ticks = d3.range(2, 12, 2);
 
-    private plotSize: number = 650;
-
-    constructor() {
-        for (let i = 0; i < 2; i++) {
+    constructor(private radarChartService: RadarChartService) {
+        this.radarChartService.features = DEFENSIVE_FEATURES;
+        for (let i = 0; i < 3; i++) {
             let point = {};
             //each feature will be a random number from 1-9
-            this.features.forEach((f) => (point[f] = 1 + Math.random() * 9));
+            radarChartService.features.forEach((f) => (point[f] = 1 + Math.random() * 9));
             this.data.push(point);
         }
     }
@@ -34,7 +32,11 @@ export class DefensiveActionsComponent implements OnInit {
     }
 
     private createSvg(): void {
-        this.svg = d3.select('figure#defensive-actions').append('svg').attr('width', this.plotSize).attr('height', this.plotSize);
+        this.svg = d3
+            .select('figure#defensive-actions')
+            .append('svg')
+            .attr('width', this.radarChartService.plotSize)
+            .attr('height', this.radarChartService.plotSize);
 
         this.svg.append('g').attr('class', 'tick-circles');
         this.svg.append('g').attr('class', 'features-labels');
@@ -44,32 +46,29 @@ export class DefensiveActionsComponent implements OnInit {
     }
 
     private plotGridLines(): void {
-        this.radialScale = d3.scaleLinear().domain([0, 10]).range([0, 250]);
-
         this.svg
             .selectAll('g.tick-circles')
             .selectAll('circle')
-            .data(this.ticks)
+            .data(this.radarChartService.ticks)
             .join('circle')
-            .attr('cx', this.plotSize / 2)
-            .attr('cy', this.plotSize / 2)
+            .attr('cx', this.radarChartService.plotSize / 2)
+            .attr('cy', this.radarChartService.plotSize / 2)
             .attr('fill', 'none')
             .attr('stroke', 'gray')
-            .attr('r', (d) => this.radialScale(d));
+            .attr('r', (d) => this.radarChartService.radialScale(d));
 
-        const featuresLength = this.features.length;
-        const radialScale = this.radialScale;
-        const plotSize = this.plotSize;
-        const ticks = this.ticks;
+        const radialScale = this.radarChartService.radialScale;
+        const plotSize = this.radarChartService.plotSize;
+        const ticks = this.radarChartService.ticks;
 
         this.svg
             .selectAll('g.features-labels')
             .selectAll('g')
-            .data(this.features)
+            .data(this.radarChartService.features)
             .join('g')
             .each((_d: any, i: number, nodes: any) => {
                 const g = d3.select(nodes[i]).attr('class', (name: any) => `features-label-${name.toLowerCase().replace(/ /g, '-')}`);
-                let angle = Math.PI / 2 + (2 * Math.PI * i) / featuresLength;
+                let angle = Math.PI / 2 + (2 * Math.PI * i) / this.radarChartService.features.length;
 
                 g.selectAll('text')
                     .data(ticks)
@@ -84,21 +83,37 @@ export class DefensiveActionsComponent implements OnInit {
         this.svg
             .selectAll('g.axis-lines')
             .selectAll('line')
-            .data(this.features)
+            .data(DEFENSIVE_FEATURES)
             .join('line')
-            .attr('x1', this.plotSize / 2)
-            .attr('y1', this.plotSize / 2)
-            .attr('x2', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 10).x)
-            .attr('y2', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 10).y)
+            .attr('x1', this.radarChartService.plotSize / 2)
+            .attr('y1', this.radarChartService.plotSize / 2)
+            .attr(
+                'x2',
+                (_: any, i: number) =>
+                    this.radarChartService.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.radarChartService.features.length, 10).x,
+            )
+            .attr(
+                'y2',
+                (_: any, i: number) =>
+                    this.radarChartService.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.radarChartService.features.length, 10).y,
+            )
             .attr('stroke', 'black');
 
         this.svg
             .selectAll('g.axis-label')
             .selectAll('text')
-            .data(this.features)
+            .data(this.radarChartService.features)
             .join('text')
-            .attr('x', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 12).x)
-            .attr('y', (_: any, i: number) => this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, 12).y)
+            .attr(
+                'x',
+                (_: any, i: number) =>
+                    this.radarChartService.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.radarChartService.features.length, 12).x,
+            )
+            .attr(
+                'y',
+                (_: any, i: number) =>
+                    this.radarChartService.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.radarChartService.features.length, 12).y,
+            )
             .text((d) => d);
     }
 
@@ -107,14 +122,14 @@ export class DefensiveActionsComponent implements OnInit {
             .line<any>()
             .x((d) => d.x)
             .y((d) => d.y);
-        let colors = ['darkorange', 'navy']; // TODO: Use scaleOrdinal
+        let colors = ['darkorange', 'navy', 'gray']; // TODO: Use scaleOrdinal
 
         this.svg
             .selectAll('g.data-points')
             .selectAll('path')
             .data(this.data)
             .join('path')
-            .datum((d) => this.getPathCoordinates(d))
+            .datum((d) => this.radarChartService.getPathCoordinates(d))
             .attr('d', line)
             .attr('stroke-width', 3)
             .attr('stroke', (_d: any, i: number) => colors[i])
@@ -134,19 +149,5 @@ export class DefensiveActionsComponent implements OnInit {
             .on('mouseout', () => {
                 this.svg.selectAll('g.data-points').selectAll('path').attr('opacity', 0.5);
             });
-    }
-
-    private angleToCoordinate(angle: number, value: number): Coordinate {
-        let x = Math.cos(angle) * this.radialScale(value);
-        let y = Math.sin(angle) * this.radialScale(value);
-        return { x: this.plotSize / 2 + x, y: this.plotSize / 2 - y };
-    }
-
-    private getPathCoordinates(dataPoint: any): Coordinate[] {
-        let coordinates: Coordinate[] = [];
-        this.features.forEach((feature, i) => {
-            coordinates.push(this.angleToCoordinate(Math.PI / 2 + (2 * Math.PI * i) / this.features.length, dataPoint[feature]));
-        });
-        return coordinates;
     }
 }
