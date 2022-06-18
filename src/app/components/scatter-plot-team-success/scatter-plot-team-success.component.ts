@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import d3Legend from 'd3-svg-legend';
+import { legendColor } from 'd3-svg-legend';
 import d3Tip from 'd3-tip';
 
 @Component({
@@ -26,14 +26,15 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
     ngOnInit(): void {
         this.createSvg();
         this.drawPlot();
+        console.log(d3);
     }
 
     private createSvg(): void {
         this.svg = d3
             .select('figure#teamsuccess')
             .append('svg')
-            .attr('width', this.width + this.margin * 2)
-            .attr('height', this.height + this.margin * 2)
+            .attr('width', this.width + this.margin * 5)
+            .attr('height', this.height + this.margin * 5)
             .append('g')
             .attr('transform', 'translate(' + this.margin + ',' + this.margin + ')');
     }
@@ -102,9 +103,11 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
 
         this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2 + 65}) rotate(-90)`);
 
-        let legend = d3Legend.legendColor().shape('path', d3.symbol().type(d3.symbolCircle).size(300)()).scale(color);
+        let legend = legendColor()
+            .shape('path', d3.symbol().type(d3.symbolCircle).size(100)() as any)
+            .scale(color);
 
-        this.svg.append('g').attr('class', 'legend').attr('transform', `translate(${this.width}, -20)`).call(legend);
+        this.svg.append('g').attr('transform', 'translate(700,10)').call(legend);
     }
 
     private getTipContent(d): string {
