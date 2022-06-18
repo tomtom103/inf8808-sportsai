@@ -9,9 +9,10 @@ import { ScatterPlotTeamSuccessComponent } from './components/scatter-plot-team-
 import { ScatterComponent } from './components/scatter/scatter.component';
 import { AppMaterialModule } from './modules/material.module';
 import { HomePageComponent } from './pages/home/home.component';
+import { BubbleChartCreationComponent } from './components/bubble-chart-creation/bubble-chart-creation.component';
 
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, ScatterComponent, BarChartComponent, PieChartComponent, ScatterPlotTeamSuccessComponent],
+    declarations: [AppComponent, HomePageComponent, ScatterComponent, BarChartComponent, PieChartComponent, ScatterPlotTeamSuccessComponent, BubbleChartCreationComponent],
     imports: [AppMaterialModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
