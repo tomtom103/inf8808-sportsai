@@ -206,14 +206,14 @@ export class DefensiveActionsComponent implements OnInit {
             .selectAll('g')
             .data(this.data.map((d) => d.Name))
             .join('g')
-            .attr('transform', (d, i) => `translate(0, ${i * 20})`);
+            .attr('transform', (_d, i) => `translate(0, ${i * 20})`);
 
         legend
             .append('rect')
             .attr('x', this.plotSize - 150)
             .attr('width', 18)
             .attr('height', 18)
-            .attr('fill', (d, i) => colors[i]);
+            .attr('fill', (_d, i) => colors[i]);
 
         legend
             .append('text')
