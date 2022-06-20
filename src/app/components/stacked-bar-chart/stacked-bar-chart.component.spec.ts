@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PieChartComponent } from './pie-chart.component';
+import { StackedBarChartComponent } from './stacked-bar-chart.component';
 
-describe('PieChartComponent', () => {
-  let component: PieChartComponent;
-  let fixture: ComponentFixture<PieChartComponent>;
+describe('StackedBarChartComponent', () => {
+  let component: StackedBarChartComponent;
+  let fixture: ComponentFixture<StackedBarChartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PieChartComponent ]
+      declarations: [ StackedBarChartComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PieChartComponent);
+    fixture = TestBed.createComponent(StackedBarChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
