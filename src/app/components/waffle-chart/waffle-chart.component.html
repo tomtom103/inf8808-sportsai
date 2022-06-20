@@ -1,4 +1,6 @@
-<div data-aos="fade-up">
-    <h2>Waffle Chart</h2>
-    <figure id="waffle-chart"></figure>
+<div data-aos="fade-up" class="grid">
+    <div *ngFor="let single of data; index as i">
+        <h2>{{ single.Player }}</h2>
+        <figure id="waffle-chart-{{ i }}"></figure>
+    </div>
 </div>
