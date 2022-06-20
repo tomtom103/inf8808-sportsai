@@ -10,6 +10,7 @@ import { OffensiveDangerComponent } from './components/radar-charts/offensive-da
 import { ScatterPlotTeamSuccessComponent } from './components/scatter-plot-team-success/scatter-plot-team-success.component';
 import { AppMaterialModule } from './modules/material.module';
 import { HomePageComponent } from './pages/home/home.component';
+import { WaffleChartComponent } from './components/waffle-chart/waffle-chart.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { HomePageComponent } from './pages/home/home.component';
         ScatterPlotTeamSuccessComponent,
         OffensiveDangerComponent,
         DefensiveActionsComponent,
+        WaffleChartComponent,
     ],
     imports: [AppMaterialModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
