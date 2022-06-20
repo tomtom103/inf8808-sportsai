@@ -10,18 +10,18 @@ import d3Tip from 'd3-tip';
 })
 export class StackedBarChartComponent implements OnInit {
     private data = [
-        { player: 'Sadio Mané', G: 16, xG: 16.7, A: 2, xA: 4.4, PK: 0, PKatt: 0, npxG: 16.7, GminPK: 16 },
-        { player: 'Rafael Leão', G: 11, xG: 9.1, A: 10, xA: 6.3, PK: 0, PKatt: 0, npxG: 9.1, GminPK: 11 },
-        { player: 'Karim Benzema', G: 27, xG: 23.5, A: 12, xA: 9.5, PK: 7, PKatt: 11, npxG: 15.2, GminPK: 20 },
-        { player: 'Mohamed Salah', G: 23, xG: 21.8, A: 13, xA: 10.4, PK: 5, PKatt: 6, npxG: 17, GminPK: 18 },
-        { player: 'Kylian Mbappé', G: 28, xG: 23.4, A: 18, xA: 12.4, PK: 4, PKatt: 4, npxG: 20.3, GminPK: 24 },
-        { player: 'Christopher Nkunku', G: 20, xG: 14.8, A: 13, xA: 10, PK: 1, PKatt: 1, npxG: 14.1, GminPK: 19 },
+        { player: 'Mané', G: 16, xG: 16.7, A: 2, xA: 4.4, PK: 0, PKatt: 0, npxG: 16.7, GminPK: 16 },
+        { player: 'Leão', G: 11, xG: 9.1, A: 10, xA: 6.3, PK: 0, PKatt: 0, npxG: 9.1, GminPK: 11 },
+        { player: 'Benzema', G: 27, xG: 23.5, A: 12, xA: 9.5, PK: 7, PKatt: 11, npxG: 15.2, GminPK: 20 },
+        { player: 'Salah', G: 23, xG: 21.8, A: 13, xA: 10.4, PK: 5, PKatt: 6, npxG: 17, GminPK: 18 },
+        { player: 'Mbappé', G: 28, xG: 23.4, A: 18, xA: 12.4, PK: 4, PKatt: 4, npxG: 20.3, GminPK: 24 },
+        { player: 'Nkunku', G: 20, xG: 14.8, A: 13, xA: 10, PK: 1, PKatt: 1, npxG: 14.1, GminPK: 19 },
     ];
 
     // Groups : [G; xG], [A; xA], [PK;PKatt], [G - PK; npxG]
 
     private svg!: any;
-    private sizeFactor = 0.4;
+    private sizeFactor = 0.5;
     private margin: number = 50 * this.sizeFactor;
     private width: number = (750 - this.margin * 2) * this.sizeFactor;
     private height: number = (400 - this.margin * 2) * this.sizeFactor;
