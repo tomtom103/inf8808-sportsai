@@ -73,7 +73,6 @@ export class StackedBarChartComponent implements OnInit {
         const tip = d3Tip()
             .attr('class', 'd3-tip')
             .html(function (d) {
-                console.log(d);
                 return `
                 <span> ${d.key} : <span class="tooltip-value">${d.value}</span></span>
                 `;
