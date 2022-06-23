@@ -19,10 +19,10 @@ export class WaffleChartComponent implements AfterViewInit {
         { Player: 'Kylian Mbappé', Sh: 144, SoT: 60, Gls: 28 },
         { Player: 'Christopher Nkunku', Sh: 80, SoT: 39, Gls: 20 },
     ];
-    width: number = 300;
-    height: number = 90;
+    width: number = 400;
+    height: number = 140;
 
-    private boxSize: number = 10; // Size of each box
+    private boxSize: number = 14; // Size of each box
     private boxGap: number = 3; // space between each box
     private howManyAcross: number = Math.floor(this.height / this.boxSize);
 
