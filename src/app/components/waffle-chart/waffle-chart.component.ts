@@ -123,14 +123,14 @@ export class WaffleChartComponent implements AfterViewInit {
             legend
                 .append('rect')
                 .attr('class', (d) => `square-${d}`)
-                .attr('x', this.width - 30)
-                .attr('width', 8)
-                .attr('height', 8)
+                .attr('x', this.width - 35)
+                .attr('width', 11)
+                .attr('height', 11)
                 .attr('fill', (d) => this.colors[Object.keys(rest).indexOf(d)]);
             legend
                 .append('text')
                 .attr('x', this.width - 20)
-                .attr('y', 3)
+                .attr('y', 5)
                 .attr('font-size', '10px')
                 .attr('dy', '0.35em')
                 .text((d) => d);
