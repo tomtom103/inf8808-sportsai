@@ -25,6 +25,7 @@ export class WaffleChartComponent implements AfterViewInit {
     private boxSize: number = 14; // Size of each box
     private boxGap: number = 3; // space between each box
     private howManyAcross: number = Math.floor(this.height / this.boxSize);
+    private occurrences: any[] = [];
 
     private previousGroup: any = undefined;
 
@@ -57,7 +58,7 @@ export class WaffleChartComponent implements AfterViewInit {
                 data.push(...Array.from({ length: rest[key] }, () => key));
             });
 
-            const occurrences = data.reduce((acc, curr) => {
+            this.occurrences = data.reduce((acc, curr) => {
                 return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
             }, {});
 
@@ -82,7 +83,7 @@ export class WaffleChartComponent implements AfterViewInit {
 
                         let e = currentSvg.select('g.all-rects');
 
-                        this.tip.show(occurrences[d], e.node());
+                        this.tip.show(this.occurrences[d], e.node());
                     }
                 })
                 .on('mouseleave', (_event, d) => {
@@ -116,6 +117,9 @@ export class WaffleChartComponent implements AfterViewInit {
                 .on('mouseenter', (_event, d) => {
                     currentSvg.selectAll('rect').attr('opacity', 0.5);
                     currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
+                    let e = currentSvg.select('g.all-rects');
+
+                    this.tip.show(this.occurrences[d], e.node());
                 })
                 .on('mouseleave', (_event, d) => {
                     currentSvg.selectAll('rect').attr('opacity', 1);

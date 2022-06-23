@@ -8,7 +8,7 @@
 
 .grid > div {
     display: flex;
-    flex-basis: calc(50% - 40px);
+    flex-basis: calc(40% - 40px);
     justify-content: center;
     flex-direction: column;
 }
@@ -96,4 +96,34 @@ h1 {
     font-size: 250%;
     line-height: 1.2;
     font-weight: bold;
+}
+
+.statistic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+.statistics-used {
+    margin-bottom: 60px;
+}
+
+.italic-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-bottom: 50px;
+    font-style: italic;
+    text-align: center;
+
+    p {
+        margin-bottom: 20px;
+    }
 }
