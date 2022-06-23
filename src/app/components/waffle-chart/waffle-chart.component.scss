@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .grid > div {
@@ -16,8 +17,9 @@
     margin-left: 40px;
     margin-bottom: 10px;
     margin-right: 40px;
-    margin-top: 20px;
+    margin-top: 0;
     text-align: center;
+    font-size: 15px;
 }
 
 .chart-title {
@@ -36,4 +38,53 @@
 .svg-container {
     display: inline-block;
     margin: 0 auto;
+}
+
+.all-figures {
+    width: 70% !important;
+}
+
+.grid-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 65% !important;
+}
+
+.text-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 30% !important;
+    margin-right: 40px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100% !important;
+}
+
+p {
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+h1 {
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
 }

@@ -2,10 +2,25 @@
     <div class="chart-title-container">
         <h1 class="chart-title">Efficiency in front of the goal</h1>
     </div>
-    <div class="grid">
-        <div *ngFor="let single of data; index as i">
-            <h2 class="title">{{ single.Player }}</h2>
-            <figure id="waffle-chart-{{ i }}" class="svg-container"></figure>
+    <div class="container">
+        <div class="grid-container">
+            <div class="grid">
+                <div *ngFor="let single of data; index as i">
+                    <h2 class="title">{{ single.Player }}</h2>
+                    <figure id="waffle-chart-{{ i }}" class="svg-container"></figure>
+                </div>
+            </div>
+        </div>
+        <div class="text-container">
+            <h1>The Verdict</h1>
+            <p>
+                As we can see, all the players are able to convert a lot of shots into goals. XYZ's accuracy is above the rest, with the highest ratio
+                of shot to goal conversion.
+            </p>
+            <br />
+            <p>
+                This aspect is extremely important, because it is a concrete proof that the player is able to create opportunities and exploit them.
+            </p>
         </div>
     </div>
 </div>

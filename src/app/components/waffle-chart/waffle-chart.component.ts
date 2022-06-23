@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import * as d3 from 'd3';
+import d3Tip from 'd3-tip';
 
 @Component({
     selector: 'app-waffle-chart',
@@ -18,15 +19,21 @@ export class WaffleChartComponent implements AfterViewInit {
         { Player: 'Kylian Mbappé', Sh: 144, SoT: 60, Gls: 28 },
         { Player: 'Christopher Nkunku', Sh: 80, SoT: 39, Gls: 20 },
     ];
-    width: number = 600;
-    height: number = 180;
+    width: number = 300;
+    height: number = 90;
 
-    private boxSize: number = 20; // Size of each box
+    private boxSize: number = 10; // Size of each box
     private boxGap: number = 3; // space between each box
     private howManyAcross: number = Math.floor(this.height / this.boxSize);
 
-    private categoryScale: any;
+    private previousGroup: any = undefined;
+
     private colors: string[] = ['#21A179', '#1481BA', '#F3535B'];
+    private tip: any = d3Tip()
+        .attr('class', 'd3-tip')
+        .html((d) => {
+            return this.getTipContent(d);
+        });
 
     constructor() {}
 
@@ -37,7 +44,7 @@ export class WaffleChartComponent implements AfterViewInit {
     }
 
     private drawWaffle() {
-        this.data.forEach((d, i) => {
+        this.data.forEach((d) => {
             const currentSvg = this.svgs.get(d.Player);
 
             const { Player, ...rest } = d;
@@ -50,7 +57,15 @@ export class WaffleChartComponent implements AfterViewInit {
                 data.push(...Array.from({ length: rest[key] }, () => key));
             });
 
+            const occurrences = data.reduce((acc, curr) => {
+                return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+            }, {});
+
+            currentSvg.call(this.tip);
+
             currentSvg
+                .append('g')
+                .attr('class', 'all-rects')
                 .selectAll('rect')
                 .data(data)
                 .join('rect')
@@ -61,21 +76,34 @@ export class WaffleChartComponent implements AfterViewInit {
                 .attr('height', this.boxSize - this.boxGap)
                 .attr('fill', (d) => this.colors[Object.keys(rest).indexOf(d)])
                 .on('mouseover', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 0.5);
-                    currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
+                    if (this.previousGroup !== d) {
+                        currentSvg.selectAll('rect').attr('opacity', 0.5);
+                        currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
+
+                        let e = currentSvg.select('g.all-rects');
+
+                        this.tip.show(occurrences[d], e.node());
+                    }
                 })
-                .on('mouseout', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 1);
+                .on('mouseleave', (_event, d) => {
+                    this.previousGroup = d;
+                    // currentSvg.selectAll('rect').attr('opacity', 1);
                 });
         });
+    }
+
+    private getTipContent(d: any): string {
+        return `
+            <div class="tip-content">
+                <div class="tip-title">${d}</div>
+            </div>
+        `;
     }
 
     private drawLegend() {
         this.data.forEach((d) => {
             const currentSvg = this.svgs.get(d.Player);
-
             const { Player, ...rest } = d;
-
             const legend = currentSvg
                 .append('g')
                 .attr('class', `legend-${this.normalizePlayerName(Player)}`)
@@ -83,37 +111,29 @@ export class WaffleChartComponent implements AfterViewInit {
                 .data(Object.keys(rest))
                 .join('g')
                 .attr('transform', (d, i) => {
-                    return `translate(0, ${i * 30})`;
+                    return `translate(0, ${i * 15})`;
+                })
+                .on('mouseenter', (_event, d) => {
+                    currentSvg.selectAll('rect').attr('opacity', 0.5);
+                    currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
+                })
+                .on('mouseleave', (_event, d) => {
+                    currentSvg.selectAll('rect').attr('opacity', 1);
                 });
-
             legend
                 .append('rect')
                 .attr('class', (d) => `square-${d}`)
-                .attr('x', this.width - 60)
-                .attr('width', 17)
-                .attr('height', 17)
-                .attr('fill', (d) => this.colors[Object.keys(rest).indexOf(d)])
-                .on('mouseover', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 0.5);
-                    currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
-                })
-                .on('mouseout', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 1);
-                });
-
+                .attr('x', this.width - 30)
+                .attr('width', 8)
+                .attr('height', 8)
+                .attr('fill', (d) => this.colors[Object.keys(rest).indexOf(d)]);
             legend
                 .append('text')
-                .attr('x', this.width - 30)
-                .attr('y', 7)
+                .attr('x', this.width - 20)
+                .attr('y', 3)
+                .attr('font-size', '10px')
                 .attr('dy', '0.35em')
-                .text((d) => d)
-                .on('mouseover', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 0.5);
-                    currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
-                })
-                .on('mouseout', (_event, d) => {
-                    currentSvg.selectAll('rect').attr('opacity', 1);
-                });
+                .text((d) => d);
         });
     }
 
@@ -129,7 +149,15 @@ export class WaffleChartComponent implements AfterViewInit {
             .append('svg')
             .attr('class', `${this.className}-${this.normalizePlayerName(d.Player)}`)
             .attr('width', this.width)
-            .attr('height', this.height);
+            .attr('height', this.height)
+            .on('mouseleave', (_event, d) => {
+                this.previousGroup = d;
+                d3.selectAll('rect').attr('opacity', 1);
+                let e = d3.selectAll('g.all-rects');
+                e.nodes().forEach((node) => {
+                    d3.select(node).call(this.tip.hide);
+                });
+            });
     }
 
     private normalizePlayerName(name: string): string {
