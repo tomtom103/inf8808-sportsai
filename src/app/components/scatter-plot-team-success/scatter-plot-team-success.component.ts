@@ -63,7 +63,7 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
         const color = d3
             .scaleOrdinal()
             .domain(this.data.map((d) => d.player))
-            .range(d3.schemeCategory10);
+            .range(['#21a179', '#F3535B', '#1481ba', '#1e1e24', '#ffd166', '#d4a373']);
 
         // Add dots
         const dots = this.svg.append('g');
@@ -73,8 +73,8 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
             .append('circle')
             .attr('cx', (d) => x(d.plusMinus))
             .attr('cy', (d) => y(d.PPM))
-            .attr('r', 5)
-            .style('opacity', 0.5)
+            .attr('r', 6.5)
+            .style('opacity', 0.65)
             .style('fill', (d) => color(d.player))
             .on('mouseover', function (_event, d) {
                 let e = dots
@@ -91,13 +91,13 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
                     .filter(function (_, i, nodes) {
                         return d3.select(nodes[i]).datum() === d;
                     })
-                    .style('opacity', 0.5);
+                    .style('opacity', 0.65);
                 tip.hide(d, e.node());
             });
 
-        this.svg.append('text').text('PPM (point per matches)').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 12);
+        this.svg.append('text').text('PPM (point per matches)').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 13);
 
-        this.svg.append('text').text('+/-').attr('class', 'x axis-text').attr('font-size', 12);
+        this.svg.append('text').text('+/-').attr('class', 'x axis-text').attr('font-size', 13);
 
         this.svg.selectAll('.x.axis-text').attr('transform', `translate(${this.width / 2}, ${this.height + 40})`);
 

@@ -7,3 +7,24 @@
     border-radius: 2px;
     pointer-events: none;
 }
+
+.chart-title {
+    font-weight: 700;
+    font-family: Montserrat;
+    font-size: 300%;
+}
+
+.chart-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.para {
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 165%;
+    font-style: italic;
+    line-height: 1.5;
+}
