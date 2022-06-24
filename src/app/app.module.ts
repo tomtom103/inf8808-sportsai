@@ -12,6 +12,7 @@ import { ScatterPlotTeamSuccessComponent } from './components/scatter-plot-team-
 import { WaffleChartComponent } from './components/waffle-chart/waffle-chart.component';
 import { AppMaterialModule } from './modules/material.module';
 import { HomePageComponent } from './pages/home/home.component';
+import { AppIntroComponent } from './components/app-intro/app-intro.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { HomePageComponent } from './pages/home/home.component';
         DefensiveActionsComponent,
         PlayerCardsComponent,
         WaffleChartComponent,
+        AppIntroComponent,
     ],
     imports: [AppMaterialModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
