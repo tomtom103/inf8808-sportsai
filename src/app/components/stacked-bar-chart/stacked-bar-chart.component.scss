@@ -32,17 +32,10 @@
     flex-direction: column;
 }
 
-.title {
-    margin-left: 40px;
-    margin-bottom: 10px;
-    margin-right: 40px;
-    margin-top: 0;
-    text-align: center;
-    font-size: 20px;
-}
-
 .chart-title {
     font-weight: bold;
+    font-size: 32px;
+    padding-bottom: 10px;
 }
 
 .chart-title-container {
@@ -84,11 +77,10 @@
 .text-container {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
     flex-direction: row;
     width: 30% !important;
-    margin-right: 40px;
     font-family: Montserrat;
 }
 
@@ -110,15 +102,16 @@ p {
 }
 
 p.text-paragraph {
-    font-size: 120%;
+    font-size: 150%;
+    justify-content: left;
 }
 
-h1 {
-    margin-bottom: 30px;
-    margin-top: 0;
-    font-size: 250%;
+.para-title {
+    font-size: 150%;
     line-height: 1.2;
     font-weight: bold;
+    padding-left: 40px;
+    padding-bottom: 15px;
 }
 
 .statistic {

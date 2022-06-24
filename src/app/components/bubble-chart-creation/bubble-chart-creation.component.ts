@@ -32,7 +32,7 @@ export class BubbleChartCreationComponent implements OnInit {
             .select('figure#bubble')
             .append('svg')
             .attr('width', this.width + this.margin * 5)
-            .attr('height', this.height + this.margin * 5)
+            .attr('height', this.height + this.margin * 3)
             .append('g')
             .attr('transform', 'translate(' + this.margin + ',' + this.margin + ')');
     }
@@ -62,8 +62,7 @@ export class BubbleChartCreationComponent implements OnInit {
             .attr('cx', (d) => x(d.KP))
             .attr('cy', (d) => y(d.PPA))
             .attr('r', (d) => radius(d.GCA))
-            .style('opacity', 0.9)
-            .style('fill', (d) => '#21A179');
+            .style('fill', (d) => '#ABA9A9');
 
         dots.selectAll('text')
             .data(this.data)
@@ -71,9 +70,9 @@ export class BubbleChartCreationComponent implements OnInit {
             .append('text')
             .text((d) => d.player)
             .attr('x', (d) => x(d.KP) - 10)
-            .attr('y', (d) => y(d.PPA) - 10)
-            .style('font-size', 12);
-
+            .attr('y', (d) => y(d.PPA) - 15)
+            .style('font-size', 14)
+            .style('font-weight', 550);
         //axis
         this.svg.append('text').text('PPA').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 12);
 
@@ -86,8 +85,8 @@ export class BubbleChartCreationComponent implements OnInit {
         //legend size
         this.svg.append('g').attr('class', 'radius').attr('transform', 'translate(700, 10)');
 
-        var legend = legendSize().shape('circle').shapePadding(15).labelOffset(20).orient('vertical').scale(radius);
+        var legend = legendSize().shape('circle').shapePadding(15).labelOffset(20).orient('vertical').title('GCA').scale(radius);
 
-        this.svg.select('.radius').style('fill', '#21A179').style('font-size', 11).call(legend);
+        this.svg.select('.radius').style('font-size', 14).call(legend);
     }
 }
