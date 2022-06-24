@@ -26,7 +26,6 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
     ngOnInit(): void {
         this.createSvg();
         this.drawPlot();
-        console.log(d3);
     }
 
     private createSvg(): void {
@@ -58,7 +57,6 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
         // Add Y axis
         const y = d3.scaleLinear().domain([1.5, 2.5]).range([this.height, 0]);
         this.svg.append('g').call(d3.axisLeft(y));
-        console.log(this.data.map((d) => d.player));
         // Add color scale
         const color = d3
             .scaleOrdinal()

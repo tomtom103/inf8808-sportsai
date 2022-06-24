@@ -55,7 +55,6 @@ export class OffensiveDangerComponent implements OnInit {
                 range: range(0, Math.max(...values), this.ticks.length + 1),
             });
         });
-        console.log(this.scales);
     }
 
     ngOnInit(): void {
