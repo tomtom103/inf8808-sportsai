@@ -1,12 +1,32 @@
-.side-text {
+* {
     font-family: Montserrat;
-    display: inline-block;
 }
 
-.title {
-    font-size: 200%;
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100% !important;
+}
+
+.text-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 27% !important;
+    font-family: Montserrat;
+    margin-bottom: 15%;
+}
+
+.para-title {
+    font-size: 250%;
     line-height: 1.2;
-    font-weight: bold;
+    font-weight: bolder;
+    padding-bottom: 15px;
 }
 
 .flip-card {
@@ -25,6 +45,12 @@
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
+}
+
+.text-paragraph {
+    font-size: 190%;
+    justify-content: left;
+    line-height: 1.2;
 }
 
 .flip-card:hover .flip-card-inner {

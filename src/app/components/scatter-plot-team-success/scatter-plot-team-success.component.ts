@@ -33,7 +33,7 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
             .select('figure#teamsuccess')
             .append('svg')
             .attr('width', this.width + this.margin * 5)
-            .attr('height', this.height + this.margin * 5)
+            .attr('height', this.height + this.margin * 2)
             .append('g')
             .attr('transform', 'translate(' + this.margin + ',' + this.margin + ')');
     }
