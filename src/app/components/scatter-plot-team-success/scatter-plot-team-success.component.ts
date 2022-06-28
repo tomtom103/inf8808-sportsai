@@ -20,7 +20,7 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
 
     private svg!: any;
     private margin: number = 50;
-    private width: number = 750 - this.margin * 2;
+    private width: number = 650 - this.margin * 2;
     private height: number = 400 - this.margin * 2;
 
     ngOnInit(): void {
@@ -99,13 +99,13 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
 
         this.svg.selectAll('.x.axis-text').attr('transform', `translate(${this.width / 2}, ${this.height + 40})`);
 
-        this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2 + 65}) rotate(-90)`);
+        this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2 + 70}) rotate(-90)`);
 
         let legend = legendColor()
             .shape('path', d3.symbol().type(d3.symbolCircle).size(100)() as any)
             .scale(color);
 
-        this.svg.append('g').attr('transform', 'translate(700,10)').call(legend);
+        this.svg.append('g').attr('transform', 'translate(600,10)').call(legend);
     }
 
     private getTipContent(d): string {

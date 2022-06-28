@@ -45,7 +45,7 @@ export class WaffleChartComponent implements AfterViewInit {
     }
 
     private drawWaffle() {
-        this.data.forEach((d) => {
+        this.data.forEach((d, i) => {
             const currentSvg = this.svgs.get(d.Player);
 
             const { Player, ...rest } = d;
@@ -58,9 +58,13 @@ export class WaffleChartComponent implements AfterViewInit {
                 data.push(...Array.from({ length: rest[key] }, () => key));
             });
 
-            this.occurrences = data.reduce((acc, curr) => {
-                return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-            }, {});
+            this.occurrences.push(
+                data.reduce((acc, curr) => {
+                    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+                }, {}),
+            );
+
+            console.log(this.occurrences);
 
             currentSvg.call(this.tip);
 
@@ -83,12 +87,11 @@ export class WaffleChartComponent implements AfterViewInit {
 
                         let e = currentSvg.select('g.all-rects');
 
-                        this.tip.show(this.occurrences[d], e.node());
+                        this.tip.show(this.occurrences[i][d], e.node());
                     }
                 })
                 .on('mouseleave', (_event, d) => {
                     this.previousGroup = d;
-                    // currentSvg.selectAll('rect').attr('opacity', 1);
                 });
         });
     }

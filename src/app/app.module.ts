@@ -13,6 +13,7 @@ import { WaffleChartComponent } from './components/waffle-chart/waffle-chart.com
 import { AppMaterialModule } from './modules/material.module';
 import { HomePageComponent } from './pages/home/home.component';
 import { AppIntroComponent } from './components/app-intro/app-intro.component';
+import { ConclusionComponent } from './components/conclusion/conclusion.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { AppIntroComponent } from './components/app-intro/app-intro.component';
         PlayerCardsComponent,
         WaffleChartComponent,
         AppIntroComponent,
+        ConclusionComponent,
     ],
     imports: [AppMaterialModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
     providers: [],
