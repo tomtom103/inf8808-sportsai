@@ -64,8 +64,6 @@ export class WaffleChartComponent implements AfterViewInit {
                 }, {}),
             );
 
-            console.log(this.occurrences);
-
             currentSvg.call(this.tip);
 
             currentSvg
