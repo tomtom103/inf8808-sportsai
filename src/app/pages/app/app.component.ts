@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         AOS.init({
             debounceDelay: 150,
+            throttleDelay: 250,
         });
     }
 }
