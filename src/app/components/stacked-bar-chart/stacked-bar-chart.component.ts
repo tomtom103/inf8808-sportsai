@@ -28,16 +28,16 @@ export class StackedBarChartComponent implements OnInit {
 
     ngOnInit(): void {
         this.createSvg('figure#multi-bar-1');
-        this.drawBars(this.data, 'G', 'xG');
+        this.drawPlot(this.data, 'G', 'xG');
 
         this.createSvg('figure#multi-bar-2');
-        this.drawBars(this.data, 'A', 'xA');
+        this.drawPlot(this.data, 'A', 'xA');
 
         this.createSvg('figure#multi-bar-3');
-        this.drawBars(this.data, 'PK', 'PKatt');
+        this.drawPlot(this.data, 'PK', 'PKatt');
 
         this.createSvg('figure#multi-bar-4');
-        this.drawBars(this.data, 'GminPK', 'npxG');
+        this.drawPlot(this.data, 'GminPK', 'npxG');
     }
 
     private createSvg(selector: string): void {
@@ -50,24 +50,22 @@ export class StackedBarChartComponent implements OnInit {
             .attr('transform', 'translate(' + this.margin + ',' + this.margin + ')');
     }
 
-    private drawBars(data: any[], group1, group2): void {
+    private drawPlot(data: any[], group1, group2): void {
         const subgroups = [group1, group2];
         const groups = d3.map(data, (d) => d.player);
-        // Add X axis
-        const x = d3.scaleBand().domain(groups).range([0, this.width]).padding(0.2);
 
+        //Get scales
+        let scales = this.getScales(subgroups, groups);
+        let x = scales.x;
+        let y = scales.y;
+        let xSubgroup = scales.xSubgroup;
+        let color = scales.color;
+
+        // Add X axis
         this.svg.append('g').attr('transform', `translate(0, ${this.height})`).call(d3.axisBottom(x).tickSize(0));
 
         // Add Y axis
-        const y = d3.scaleLinear().domain([0, 40]).range([this.height, 0]);
-
         this.svg.append('g').call(d3.axisLeft(y));
-
-        // Another scale for subgroup position?
-        const xSubgroup = d3.scaleBand().domain(subgroups).range([0, x.bandwidth()]).padding(0.05);
-
-        // color palette = one color per subgroup
-        const color = d3.scaleOrdinal().domain(subgroups).range(['#21a179', '#1e1e24']);
 
         // tooltip
         const tip = d3Tip()
@@ -81,6 +79,21 @@ export class StackedBarChartComponent implements OnInit {
 
         this.svg.call(tip);
 
+        this.drawBars(data, subgroups, x, y, xSubgroup, color, tip);
+
+        this.drawLegend(color);
+    }
+
+    private getScales(subgroups: any[], groups: any[]) {
+        const x = d3.scaleBand().domain(groups).range([0, this.width]).padding(0.2);
+        const y = d3.scaleLinear().domain([0, 40]).range([this.height, 0]);
+        const xSubgroup = d3.scaleBand().domain(subgroups).range([0, x.bandwidth()]).padding(0.05);
+        const color = d3.scaleOrdinal().domain(subgroups).range(['#21a179', '#1e1e24']);
+
+        return { x, y, xSubgroup, color };
+    }
+
+    private drawBars(data: any, subgroups: any, x: any, y: any, xSubgroup: any, color: any, tip: any) {
         let bars = this.svg.append('g');
         // Show the bars
         bars.selectAll('g')
@@ -110,7 +123,9 @@ export class StackedBarChartComponent implements OnInit {
                 tip.show(d, e.node());
             })
             .on('mouseout', tip.hide);
+    }
 
+    private drawLegend(color: any) {
         let legend = legendColor()
             .shape('path', d3.symbol().type(d3.symbolCircle).size(100)() as any)
             .scale(color);

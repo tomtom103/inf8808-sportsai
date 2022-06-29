@@ -47,23 +47,38 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
             });
         this.svg.call(tip);
 
-        // Add X axis
-        const x = d3.scaleLinear().domain([30, 60]).range([0, this.width]);
+        // Get scales
+        let scales = this.getScales();
+        let y = scales.y;
+        let x = scales.x;
+        let color = scales.color;
+
+        //Add X axis
         this.svg
             .append('g')
             .attr('transform', 'translate(0,' + this.height + ')')
             .call(d3.axisBottom(x).tickFormat(d3.format('d')));
 
         // Add Y axis
-        const y = d3.scaleLinear().domain([1.5, 2.5]).range([this.height, 0]);
         this.svg.append('g').call(d3.axisLeft(y));
-        // Add color scale
-        const color = d3
-            .scaleOrdinal()
-            .domain(this.data.map((d) => d.player))
-            .range(['#21a179', '#F3535B', '#1481ba', '#1e1e24', '#ffd166', '#d4a373']);
 
         // Add dots
+        this.drawDots(x, y, tip, color);
+
+        this.formatAxisLabels();
+
+        this.drawLegend(color);
+    }
+
+    private getTipContent(d): string {
+        return `
+      <span> onG : <span class="tooltip-value">${d.onG}</span></span>
+      <br>
+      <span> onGa : <span class="tooltip-value">${d.onGA}</span></span>
+    `;
+    }
+
+    private drawDots(x: any, y: any, tip: any, color: any) {
         const dots = this.svg.append('g');
         dots.selectAll('dot')
             .data(this.data)
@@ -92,7 +107,20 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
                     .style('opacity', 0.65);
                 tip.hide(d, e.node());
             });
+    }
 
+    private getScales() {
+        let x = d3.scaleLinear().domain([30, 60]).range([0, this.width]);
+        let y = d3.scaleLinear().domain([1.5, 2.5]).range([this.height, 0]);
+        let color = d3
+            .scaleOrdinal()
+            .domain(this.data.map((d) => d.player))
+            .range(['#21a179', '#F3535B', '#1481ba', '#1e1e24', '#ffd166', '#d4a373']);
+
+        return { x, y, color };
+    }
+
+    private formatAxisLabels() {
         this.svg.append('text').text('PPM (point per matches)').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 13);
 
         this.svg.append('text').text('+/-').attr('class', 'x axis-text').attr('font-size', 13);
@@ -100,19 +128,13 @@ export class ScatterPlotTeamSuccessComponent implements OnInit {
         this.svg.selectAll('.x.axis-text').attr('transform', `translate(${this.width / 2}, ${this.height + 40})`);
 
         this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2 + 70}) rotate(-90)`);
+    }
 
+    private drawLegend(color: any) {
         let legend = legendColor()
             .shape('path', d3.symbol().type(d3.symbolCircle).size(100)() as any)
             .scale(color);
 
         this.svg.append('g').attr('transform', 'translate(600,10)').call(legend);
-    }
-
-    private getTipContent(d): string {
-        return `
-      <span> onG : <span class="tooltip-value">${d.onG}</span></span>
-      <br>
-      <span> onGa : <span class="tooltip-value">${d.onGA}</span></span>
-    `;
     }
 }

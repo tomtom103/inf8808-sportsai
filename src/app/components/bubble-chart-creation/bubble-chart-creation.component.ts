@@ -38,22 +38,41 @@ export class BubbleChartCreationComponent implements OnInit {
     }
 
     private drawPlot() {
-        const x = d3.scaleLinear().domain([35, 75]).range([0, this.width]);
+        //Get scales
+        let scales = this.getScales();
+        let x = scales.x;
+        let y = scales.y;
+        let radius = scales.radius;
+
+        // Add X axis
         this.svg
             .append('g')
             .attr('transform', 'translate(0,' + this.height + ')')
             .call(d3.axisBottom(x).tickFormat(d3.format('d')));
 
         // Add Y axis
-        const y = d3.scaleLinear().domain([45, 90]).range([this.height, 0]);
         this.svg.append('g').call(d3.axisLeft(y));
 
+        this.drawBubbles(x, y, radius);
+
+        this.formatAxisLabels();
+
+        this.drawLegend(radius);
+    }
+
+    private getScales() {
+        let x = d3.scaleLinear().domain([35, 75]).range([0, this.width]);
+        let y = d3.scaleLinear().domain([45, 90]).range([this.height, 0]);
         let gca = this.data.map((d) => d.GCA);
-        const radius = d3
+        let radius = d3
             .scaleLinear()
             .domain([d3.min(gca as any[]), d3.max(gca as any[])])
             .range([5, 15]);
 
+        return { x, y, radius };
+    }
+
+    private drawBubbles(x: any, y: any, radius: any) {
         const dots = this.svg.append('g');
         dots.selectAll('dot')
             .data(this.data)
@@ -73,7 +92,9 @@ export class BubbleChartCreationComponent implements OnInit {
             .attr('y', (d) => y(d.PPA) - 15)
             .style('font-size', 14)
             .style('font-weight', 550);
-        //axis
+    }
+
+    private formatAxisLabels() {
         this.svg.append('text').text('PPA').attr('class', 'y axis-text').attr('transform', 'rotate(-90)').attr('font-size', 12);
 
         this.svg.append('text').text('KP (Key passes)').attr('class', 'x axis-text').attr('font-size', 12);
@@ -81,8 +102,9 @@ export class BubbleChartCreationComponent implements OnInit {
         this.svg.selectAll('.x.axis-text').attr('transform', `translate(${this.width / 2 - 40}, ${this.height + 40})`);
 
         this.svg.selectAll('.y.axis-text').attr('transform', `translate(-40, ${this.height / 2}) rotate(-90)`);
+    }
 
-        //legend size
+    private drawLegend(radius: any) {
         this.svg.append('g').attr('class', 'radius').attr('transform', 'translate(700, 10)');
 
         var legend = legendSize().shape('circle').shapePadding(15).labelOffset(20).orient('vertical').title('GCA').scale(radius);
