@@ -103,7 +103,7 @@ export class WaffleChartComponent implements AfterViewInit {
     }
 
     private drawLegend() {
-        this.data.forEach((d) => {
+        this.data.forEach((d, i) => {
             const currentSvg = this.svgs.get(d.Player);
             const { Player, ...rest } = d;
             const legend = currentSvg
@@ -120,7 +120,7 @@ export class WaffleChartComponent implements AfterViewInit {
                     currentSvg.selectAll(`.square-${d}`).attr('opacity', 1);
                     let e = currentSvg.select('g.all-rects');
 
-                    this.tip.show(this.occurrences[d], e.node());
+                    this.tip.show(this.occurrences[i][d], e.node());
                 })
                 .on('mouseleave', (_event, d) => {
                     currentSvg.selectAll('rect').attr('opacity', 1);
